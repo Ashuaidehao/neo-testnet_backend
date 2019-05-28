@@ -55,7 +55,7 @@ def request_main():
                 return responses.db_limit()
 
             ip_query = dblimits.find_ip_address(ip)
-            if ip_query and not neo_query and not dblimits.is_enough_time(
+            if ip_query and is_new_address(neo_address) and not dblimits.is_enough_time(
                     ip_query.last_request_date):
                 return responses.ip_limit()
 
@@ -241,6 +241,13 @@ def find_address(address, asset):
         return dblimits.find_neo_address(address)
     elif asset == "GAS":
         return dblimits.find_gas_address(address)
+
+
+def is_new_address(address):
+    lastrequest = dblimits.find_neo_address(address)
+    if lastrequest is None:
+        lastrequest = dblimits.find_gas_address(address)
+    return lastrequest is None
 
 
 def db_save_address(query, address, asset):
