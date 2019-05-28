@@ -55,7 +55,7 @@ def request_main():
                 return responses.db_limit()
 
             ip_query = dblimits.find_ip_address(ip)
-            if ip_query and neo_query and not dblimits.is_enough_time(
+            if ip_query and not dblimits.is_enough_time(
                     ip_query.last_request_date):
                 return responses.ip_limit()
 
