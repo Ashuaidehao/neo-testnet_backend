@@ -30,6 +30,10 @@ github_client_secret = app.config['GITHUB_CLIENT_SECRET']
 # restrict number of requests by IP - 1 request for IP per day
 # @limiter.limit("1 per day")
 def request_main():
+    # app.logger.info("world")
+    # app.logger.debug("world2")
+    # app.logger.warn("world3")
+    # app.logger.error("world4")
     user = mywish_session.get_github_user()
     if user is None:
         return responses.login_fail(url_for("login"))
@@ -65,6 +69,7 @@ def request_main():
         elif neo_asset == "GAS":
             ret = cli.sendtoaddress(asset_gas, neo_address, asset_amount)
         if 'error' in ret and ret['error'] and ret['error']['code'] != 0:
+            app.logger.warn("Send %(neo_asset)s error,address:%(neo_address)s, ip:%(ip)s,git account:%(account)s,rpc result:"+json.dumps(ret))
             return responses.balance_fail(ret['error']['message'])
 
         tokentype = TokenType.NEO if neo_asset == "NEO" else TokenType.GAS
@@ -74,6 +79,7 @@ def request_main():
 
         db_save_request_log(neo_address, account, asset_amount,
                             tokentype.value, ip)
+        app.logger.info("Send %(neo_asset)s success,address:%(neo_address)s, ip:%(ip)s,git account:%(account)s")
         return responses.send_success(neo_address)
 
 
