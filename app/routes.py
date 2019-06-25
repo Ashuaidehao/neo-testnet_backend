@@ -38,6 +38,7 @@ def request_main():
     if user is None:
         return responses.login_fail(url_for("login"))
     account = user.get('login')
+    
     # fetch captcha key and validate
     response = request.get_json()
     captcha_check = captcha_verify(response['g-recaptcha-response'])
@@ -69,7 +70,7 @@ def request_main():
         elif neo_asset == "GAS":
             ret = cli.sendtoaddress(asset_gas, neo_address, asset_amount)
         if 'error' in ret and ret['error'] and ret['error']['code'] != 0:
-            app.logger.warn("Send %(neo_asset)s error,address:%(neo_address)s, ip:%(ip)s,git account:%(account)s,rpc result:"+json.dumps(ret))
+            app.logger.warn("Send %s error,address:%s, ip:%s,git account:%s,rpc result:%s" % (neo_asset,neo_address,ip,account,json.dumps(ret)))
             return responses.balance_fail(ret['error']['message'])
 
         tokentype = TokenType.NEO if neo_asset == "NEO" else TokenType.GAS
@@ -79,7 +80,7 @@ def request_main():
 
         db_save_request_log(neo_address, account, asset_amount,
                             tokentype.value, ip)
-        app.logger.info("Send %(neo_asset)s success,address:%(neo_address)s, ip:%(ip)s,git account:%(account)s")
+        app.logger.info("Send %s success,address:%s, ip:%s,git account:%s" % (neo_asset,neo_address,ip,account))
         return responses.send_success(neo_address)
 
 
