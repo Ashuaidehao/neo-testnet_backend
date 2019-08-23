@@ -1,7 +1,4 @@
-FROM python:3.6-alpine  AS Final
-
-RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories \
-    && apk add --update build-base libffi-dev postgresql-dev 
+FROM ashuaidehao/neowish-deps:latest  AS Final
 
 WORKDIR /app
 COPY . .
