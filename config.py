@@ -2,7 +2,7 @@ import os
 from datetime import timedelta
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ROOT = os.path.dirname(os.path.realpath(__file__))
-ENV = os.environ["NEO_WISH_ENV"]
+ENV = os.getenv("NEO_WISH_ENV")
 
 
 class Config(object):
