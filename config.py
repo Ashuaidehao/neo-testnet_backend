@@ -2,6 +2,7 @@ import os
 from datetime import timedelta
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ROOT = os.path.dirname(os.path.realpath(__file__))
+ENV = os.getenv("NEO_WISH_ENV")
 
 
 class Config(object):
@@ -30,8 +31,12 @@ class Config(object):
     # GITHUB_CLIENT_ID = '205be6d17715fd71c4b2'
     # GITHUB_CLIENT_SECRET = '083391b15a1e7e36f12732c7f40b028f00b1e8aa'
     # test
-    # GITHUB_CLIENT_ID = 'cf5c80adab6f96806e05'
-    # GITHUB_CLIENT_SECRET = '4583c7c12ee734744566be5dee95d77b18a00258'
+    
     # prod
-    GITHUB_CLIENT_ID = '79e5e1e9714ab6d04bd0'
-    GITHUB_CLIENT_SECRET = 'daffdc3556e7a7665c625fb3b5a5ae2ba0acc14c'
+    GITHUB_CLIENT_ID = 'b2eb059e1b4f1d4d1039'
+    GITHUB_CLIENT_SECRET = '47e364e262f06212e2bd5cd295ea246a825c6445'
+
+    if ENV=="test":
+        GITHUB_CLIENT_ID = 'cf5c80adab6f96806e05'
+        GITHUB_CLIENT_SECRET = '4583c7c12ee734744566be5dee95d77b18a00258'
+
