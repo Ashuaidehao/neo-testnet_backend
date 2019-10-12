@@ -1,5 +1,5 @@
 from app import app, db_restrictions, responses, mywish_session
-from settings_local import FAUCET_CLI, CAPTCHA_SECRET
+from config import FAUCET_CLI, CAPTCHA_SECRET
 from flask import request, redirect, url_for
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address, get_ipaddr

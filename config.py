@@ -4,6 +4,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ROOT = os.path.dirname(os.path.realpath(__file__))
 ENV = os.getenv("NEO_WISH_ENV")
 
+# neo3 cli rpc address
+FAUCET_CLI = 'http://127.0.0.1:30332'
+CAPTCHA_SECRET = "6LfNuZkUAAAAAAg4Hy1EqXto5U7O1wBII8ZajAzd" 
 
 class Config(object):
 
@@ -12,7 +15,7 @@ class Config(object):
     POSTGRES = {
         'user': 'neo_faucet',
         'pw': 'neo_faucet',
-        'db': 'neo_faucet',
+        'db': 'neo3_faucet',
         'host': 'localhost',
         'port': '5432',
     }
@@ -39,4 +42,8 @@ class Config(object):
     if ENV=="test":
         GITHUB_CLIENT_ID = 'cf5c80adab6f96806e05'
         GITHUB_CLIENT_SECRET = '4583c7c12ee734744566be5dee95d77b18a00258'
+
+        
+        
+
 
