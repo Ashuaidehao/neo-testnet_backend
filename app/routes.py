@@ -90,7 +90,7 @@ def login():
     '''
     redirect to github login page
     '''
-    return authorize(redirect_uri="https://neowish.ngd.network/neo3/")
+    return authorize(redirect_uri="https://neowish.ngd.network/neo3-api/api/github/callback")
 
 
 @app.route('/api/github/callback')
