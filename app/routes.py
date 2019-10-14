@@ -90,7 +90,7 @@ def login():
     '''
     redirect to github login page
     '''
-    return authorize(redirect_uri="https://neowish.ngd.network/neo3-api/api/github/callback?next=/neo3/")
+    return authorize()
 
 
 @app.route('/api/github/callback')
@@ -106,7 +106,7 @@ def authorized():
     user = get_github_user()
     if user is not None:
         mywish_session.set_github_user(user)
-    next_url = request.args.get('next') or "/"
+    next_url = request.args.get('next') or "/neo3/"
     return redirect(next_url)
 
 

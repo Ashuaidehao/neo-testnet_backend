@@ -36,8 +36,8 @@ class Config(object):
     # test
     
     # prod
-    GITHUB_CLIENT_ID = 'b2eb059e1b4f1d4d1039'
-    GITHUB_CLIENT_SECRET = '47e364e262f06212e2bd5cd295ea246a825c6445'
+    GITHUB_CLIENT_ID = '332dbac3756470c983b6'
+    GITHUB_CLIENT_SECRET = '08184bd1fdcccee3bccb59c34cb40099637c0c04'
 
     if ENV=="test":
         GITHUB_CLIENT_ID = 'cf5c80adab6f96806e05'
