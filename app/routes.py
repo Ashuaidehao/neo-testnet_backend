@@ -90,7 +90,7 @@ def login():
     '''
     redirect to github login page
     '''
-    return authorize()
+    return authorize(redirect_uri="/neo3/")
 
 
 @app.route('/api/github/callback')
