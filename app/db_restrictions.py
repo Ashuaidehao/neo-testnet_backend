@@ -42,6 +42,10 @@ class DatabaseRestrictions(object):
         return IPAddress.query.filter_by(ip_address=addr).one_or_none()
 
     @staticmethod
+    def find_request_log(acct):
+        return RequestLog.query.filter_by(account=acct).order_by(RequestLog.request_date.desc()).limit(2)
+
+    @staticmethod
     def new_neo_entry(addr):
         return NeoRequest(address=addr, last_request_date=datetime.now())
 
