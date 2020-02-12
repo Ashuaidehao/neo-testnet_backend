@@ -40,7 +40,7 @@ def request_main():
         return responses.login_fail(url_for("login"))
     account = user.get('login')
     requestLogs=find_request_log(account)
-    if requestLogs and not dblimits.is_enough_time(requestLogs[-1].request_dt):
+    if requestLogs and not dblimits.is_enough_time(requestLogs[-1].request_date):
         return responses.account_limit()
 
     # fetch captcha key and validate
