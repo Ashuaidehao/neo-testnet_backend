@@ -19,6 +19,8 @@ def ip_limit():
 def db_limit():
     return response_callback(602, "Address limit: 1 address per day")
 
+def account_limit():
+    return response_callback(606, "account limit: 1 account per day")
 
 def tx_fail(err):
     return response_callback(603, err)

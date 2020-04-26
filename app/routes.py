@@ -39,7 +39,10 @@ def request_main():
     if user is None:
         return responses.login_fail(url_for("login"))
     account = user.get('login')
-    
+    requestLogs=find_request_log(account)
+    if requestLogs and requestLogs.count()==2 and not dblimits.is_enough_time(requestLogs[-1].request_date):
+        return responses.account_limit()
+
     # fetch captcha key and validate
     response = request.get_json()
     captcha_check = captcha_verify(response['g-recaptcha-response'])
@@ -54,7 +57,8 @@ def request_main():
             "X-Forwarded-For")[0] if request.headers.getlist(
                 "X-Forwarded-For") else request.remote_addr
 
-        if limit_on:
+        if limit_on:         
+                
             neo_query = find_address(neo_address, neo_asset)
             if neo_query and not dblimits.is_enough_time(
                     neo_query.last_request_date):
@@ -250,6 +254,8 @@ def find_address(address, asset):
     elif asset == "GAS":
         return dblimits.find_gas_address(address)
 
+def find_request_log(account):
+    return dblimits.find_request_log(account)
 
 def is_new_address(address):
     lastrequest = dblimits.find_neo_address(address)
