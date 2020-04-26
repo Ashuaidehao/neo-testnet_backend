@@ -19,8 +19,8 @@ dblimits = db_restrictions.DatabaseRestrictions()
 limiter = Limiter(app, key_func=get_ipaddr)
 cli = ServiceProxy(FAUCET_CLI)
 
-asset_neo = "0x43cf98eddbe047e198a3e5d57006311442a0ca15"
-asset_gas = "0xa1760976db5fcdfab2a9930e8f6ce875b2d18225"
+asset_neo = "0x9bde8f209c88dd0e7ca3bf0af0f476cdd8207789"
+asset_gas = "0x8c23f196d8a1bfd103a9dcb1f9ccf0c611377d3b"
 asset_amount = app.config['DROP_AMOUNT']
 limit_on = app.config['RATELIMIT_ENABLED']
 github_client_id = app.config['GITHUB_CLIENT_ID']
